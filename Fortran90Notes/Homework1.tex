@@ -1,0 +1,177 @@
+\documentclass[a4paper,titlepage]{report}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xeCJK}
+
+\title{Fortran 90 Reading Notes}
+\author{Dong Miaowen}
+\date{2020.06.23-}
+
+\begin{document}
+\maketitle
+
+\tableofcontents{}
+
+\chapter{第一章略}
+
+\section{章节标题}
+
+\subsection{小标题}
+
+
+\chapter{First steps in Fortran 90 programming}
+
+\section{From problem to program in three basic steps}
+
+(1) 明确问题 \\
+(2) 分析问题并将其分解为几个基本元素 \\
+(3) 根据上步结果编写代码 \\
+(4) 测试——重复二、三步直至得到好的结果 \\
+
+\section{Some basic Fortran 90 concepts}
+
+\subsection*{Self-test Exercises 2.1}
+
+\begin{itemize}
+  \item[1.]
+  (1) 明确问题 \\
+  (2) 分析问题并将其分解为几个基本元素 \\
+  (3) 根据上步结果编写代码
+
+  \item[2.]
+  测试
+
+  \item[3.]
+  以字母开头、不包含特殊符号、长度小于31个字符、不区分大小写。
+
+  \item[4.]
+  program name \\
+  end program name
+
+  \item[5.]
+  implicit none \\
+  用于禁止一些在更老版本的Fortran中出现的一些内容。 \\ \\
+
+  Answer： \\
+  If the last non-blank character of a line is an ampersand (\&), then the statement is continued on the next time. \\
+  If the ampersand appears in a character context(that is, in the middle of a character string enclosed in quotation marks or apostrophes), then the first non-blank character of the next line must also be an ampersand, and the character string continues from immediately after that ampersand. \\
+  If the ampersand at then end of the first line is not in a character context, then the statment is continued either from the first character after an ampersand, if that is the first non-blank character on the line, or from the start of the next line, if the first non-blank character is not an ampersand.
+
+  \item[6.]
+  \! 后跟 comments 用于提示、解释代码作用。 \\
+  在整段代码前或语句结束后的任意位置可以添加。
+
+\end{itemize}
+
+\section{Running Fortran programs on a computer}
+
+\section{Errors in programs}
+
+\section{The design and testing of programs}
+
+编写程序时，我们需要考虑：
+\begin{itemize}
+  \item[1.]
+  Elegance. 花更多的时间在设计程序上，以更好地编写更优美的代码。强调易读性和效率。
+
+  \item[2.]
+  Maintianability. 比起编写新的算法，编写长期可维护的算法更加重要。Remembering "write once and read many times".
+
+  \item[3.]
+  Portable programs. 程序最终可以适应于大部分计算机。
+
+\end{itemize}
+
+好的程序需要：
+\begin{itemize}
+  \item[1.]
+  完全掌握程序的目的，确认好所有 input 和 output 。
+
+  \item[2.]
+  使 input 尽可能简单易理解； 使 output 清晰明确有用。
+
+  \item[3.]
+  清楚地写下解决问题的方案，将整个问题划分为更加好实现的子问题。以便后期修改直至得到正确答案。
+
+  \item[4.]
+  查看已有的可用代码 in procedure libraries 。
+
+  \item[5.]
+  Using a modular design to make sure that no single block of code should be longer than about 50 lines, excluding any comments.
+
+  \item[6.]
+  Use descriptive namees for varibles and program units anf be lavish with comments.
+
+  \item[7.]
+  Input error checking.
+
+  \item[8.]
+  测试程序的每一部分。
+
+\end{itemize}
+
+\section{The old and new Fortran 90 source forms}
+
+\subsection*{Self-text Exercises 2.2}
+
+\begin{itemize}
+  \item[1.]
+  Syntactic error: 语法错误，包括拼写错误和不符合语法规范等。
+  Semantic error: 语法没有错误，但不符合逻辑。
+
+  Syntactic error 可被 compiler 检测出，导致 compilation errors 。Semantic errors 通常不会被检测出来，属于逻辑硬伤，导致 execution errors 。
+
+  \item[2.]
+  Elegance(easier to test), maintianability, portability.
+
+  \item[3.]
+  \begin{itemize}
+    \item[1]
+    完全掌握程序的目的，确认好所有 input 和 output 。
+
+    \item[2]
+    使 input 尽可能简单易理解； 使 output 清晰明确有用。
+
+    \item[3]
+    清楚地写下解决问题的方案，将整个问题划分为更加好实现的子问题。以便后期修改直至得到正确答案。
+
+    \item[4]
+    查看已有的可用代码 in procedure libraries 。
+
+  \end{itemize}
+
+  \item[4.]
+  Answer: \\
+  \begin{itemize}
+    \item[(1)]
+    Ensure that your program carries out as many checks on the validity of the data it reads as is possible (and realistic). A program that attempts to produce a meaningful answer.
+
+    \item[(2)]
+    Carry out internal valisity checks at critical points in the calculations.
+
+    \item[(3)]
+    Check that a reasonable number of iterations aree being made while trying to converege to a solution.
+
+    \item[(4)]
+    Test each part of your program thoroughly before testing the complete grogram.
+
+  \end{itemize}
+
+  \item[5.]
+  132
+
+  \item[6.]
+  40
+
+  \item[7.]
+  No limit to the number of statements, but of characters. \\
+  By at least one blank (semi-colons).
+
+  \end{itemize}
+
+\end{document}

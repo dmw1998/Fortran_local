@@ -1,0 +1,462 @@
+\documentclass[a4paper,titlepage]{report}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{xeCJK}
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}
+\newtheorem{note}{Note}
+\newtheorem{example}{Example}
+
+\title{Fortran 90 Reading Notes}
+\author{Dong Miaowen}
+\date{2020.06.23-}
+
+\begin{document}
+\maketitle
+
+\tableofcontents{}
+
+\chapter{第一章略}
+
+\section{章节标题}
+
+\subsection{小标题}
+
+
+\chapter{First steps in Fortran 90 programming}
+
+\section{From problem to program in three basic steps}
+
+(1) 明确问题 \\
+(2) 分析问题并将其分解为几个基本元素 \\
+(3) 根据上步结果编写代码 \\
+(4) 测试——重复二、三步直至得到好的结果 \\
+
+\section{Some basic Fortran 90 concepts}
+
+\subsection*{Self-test Exercises 2.1}
+
+\begin{itemize}
+  \item[1.]
+  (1) 明确问题 \\
+  (2) 分析问题并将其分解为几个基本元素 \\
+  (3) 根据上步结果编写代码
+
+  \item[2.]
+  测试
+
+  \item[3.]
+  以字母开头、不包含特殊符号、长度小于31个字符、不区分大小写。
+
+  \item[4.]
+  program name \\
+  end program name
+
+  \item[5.]
+  implicit none \\
+  用于禁止一些在更老版本的Fortran中出现的一些内容。
+
+  Answer： \\
+  If the last non-blank character of a line is an ampersand (\&), then the statement is continued on the next time.
+
+  If the ampersand appears in a character context(that is, in the middle of a character string enclosed in quotation marks or apostrophes), then the first non-blank character of the next line must also be an ampersand, and the character string continues from immediately after that ampersand.
+
+  If the ampersand at then end of the first line is not in a character context, then the statment is continued either from the first character after an ampersand, if that is the first non-blank character on the line, or from the start of the next line, if the first non-blank character is not an ampersand.
+
+  \item[6.]
+  \! 后跟 comments 用于提示、解释代码作用。 \\
+  在整段代码前或语句结束后的任意位置可以添加。
+
+\end{itemize}
+
+\section{Running Fortran programs on a computer}
+
+\section{Errors in programs}
+
+\section{The design and testing of programs}
+
+编写程序时，我们需要考虑：
+\begin{itemize}
+  \item[1.]
+  Elegance. 花更多的时间在设计程序上，以更好地编写更优美的代码。强调易读性和效率。
+
+  \item[2.]
+  Maintianability. 比起编写新的算法，编写长期可维护的算法更加重要。Remembering "write once and read many times".
+
+  \item[3.]
+  Portable programs. 程序最终可以适应于大部分计算机。
+
+\end{itemize}
+
+\noindent 好的程序需要：
+\begin{itemize}
+  \item[1.]
+  完全掌握程序的目的，确认好所有 input 和 output 。
+
+  \item[2.]
+  使 input 尽可能简单易理解； 使 output 清晰明确有用。
+
+  \item[3.]
+  清楚地写下解决问题的方案，将整个问题划分为更加好实现的子问题。以便后期修改直至得到正确答案。
+
+  \item[4.]
+  查看已有的可用代码 in procedure libraries 。
+
+  \item[5.]
+  Using a modular design to make sure that no single block of code should be longer than about 50 lines, excluding any comments.
+
+  \item[6.]
+  Use descriptive namees for varibles and program units anf be lavish with comments.
+
+  \item[7.]
+  Input error checking.
+
+  \item[8.]
+  测试程序的每一部分。
+
+\end{itemize}
+
+\section{The old and new Fortran 90 source forms}
+
+\subsection*{Self-text Exercises 2.2}
+
+\begin{itemize}
+  \item[1.]
+  Syntactic error: 语法错误，包括拼写错误和不符合语法规范等。 \\
+  Semantic error: 语法没有错误，但不符合逻辑。
+
+  Syntactic error 可被 compiler 检测出，导致 compilation errors 。 \\
+  Semantic errors 通常不会被检测出来，属于逻辑硬伤，导致 execution errors 。
+
+  \item[2.]
+  Elegance(easier to test), maintianability, portability.
+
+  \item[3.]
+  \begin{itemize}
+    \item[(1)]
+    完全掌握程序的目的，确认好所有 input 和 output 。
+
+    \item[(2)]
+    使 input 尽可能简单易理解； 使 output 清晰明确有用。
+
+    \item[(3)]
+    清楚地写下解决问题的方案，将整个问题划分为更加好实现的子问题。以便后期修改直至得到正确答案。
+
+    \item[(4)]
+    查看已有的可用代码 in procedure libraries 。
+
+  \end{itemize}
+
+  \item[4.]
+  Answer:
+  \begin{itemize}
+    \item[(1)]
+    Ensure that your program carries out as many checks on the validity of the data it reads as is possible (and realistic). A program that attempts to produce a meaningful answer.
+
+    \item[(2)]
+    Carry out internal valisity checks at critical points in the calculations.
+
+    \item[(3)]
+    Check that a reasonable number of iterations aree being made while trying to converege to a solution.
+
+    \item[(4)]
+    Test each part of your program thoroughly before testing the complete grogram.
+
+  \end{itemize}
+
+  \item[5.]
+  132
+
+  \item[6.]
+  40
+
+  \item[7.]
+  No limit to the number of statements, but of characters. \\
+  By at least one blank (semi-colons).
+
+  \end{itemize}
+
+\section{Program Exercises}
+
+\begin{itemize}
+  \item[2.3]
+  如果不定义变量，则输出 exactly 为输入。如果定义变量为 REAL ，则输出保留九个有效数字的实数。
+
+  \item[2.4]
+  PRINT*,"" 中怎样标""，怎样换行？
+
+  \item[2.7]
+  character(len = $*$) 定义变量为长度为 $*$ 的字符串。
+
+\end{itemize}
+
+\chapter{Essential data handling}
+
+\section{The two fundamental types of numbers}
+
+integer: -50 000 000 ~ +49 999 999 （浮点计数后范围为 $-2 \times 10^{9} \sim +2 \times 10^{9}$ ) \par \par
+real number: -5000.0 ~ +4999.9999 （浮点计数会对范围外的数字取近似用科学计数法表示，范围扩展至 $-10^{38} \sim +10^{38}$ ）
+
+\section{REAL and INTERGER varibles}
+
+About variable declaration: \ TYPE :: name1, name2,... \par
+About implicit declaration: \ IMPLICIT NONE \\
+\par
+It is extremely important that this statement appears at the beginning of every program in order that imolicit declarations of variables are forbidden.
+
+\section{Arithemtic expressions and assingment}
+
+About assignment statement: \ READ (name = expression) \\
+
+\noindent 运算符号：
+\begin{table}[H]
+\centering
+\begin{tabular}{ccc}
+Operator & Meaning & Priority \\
+\hline
+$+$ & addition & Low  \\
+$-$ & subtraction & Low  \\
+$*$ & multiplication & Medium  \\
+$/$ & division & Medium  \\
+$**$ & exponentiation & High \\
+\hline 
+\end{tabular}
+\caption{Arthmetic operators}
+\label{table:MyTableLabel}
+\end{table}
+
+需要注意的是，在混合运算（mixed-mode expression）过程中，结果会因为整数运算涉及的取整而导致结果不准确，甚至错误。这种现象被称为 integer division 。 \\
+
+解决方案： 将全部运算在实数定义下进行，而后根据结果所需要的形式取整或不取整。 \\
+
+\noindent 例外们：\\
+
+如果遇到实数和整数混合运算的情况，结果会根据变量的性质取值。例如，运算结果为实数，但变量定义为整数。此时，truncate，即，仅保留整数部分，不四舍五入。 \\
+
+即使在全部都为实数的运算下，也可能因为取有限有效数字而导致计算结果有误。例如，$w=x+y-z, w=x=y=z=5.678$，因为$x+z=11.356$，而计算机四舍五入保留四位有效数字，即11.36。在减去5.678后，结果为5.682，误差为0.07\%。 \\
+
+支持正负号。 \\
+
+支持指数形式（科学计数法）。例：$10^{-6} = 10E-6$。
+
+\section{List-directed input and output of numeric data}
+
+The list-directed input statement: READ \par
+The list-directed output statement: PRINT \\
+
+\noindent About termination: \par
+The rule is that each number, or their item, must be followed by a value separator consisting of a comma, a space, a slash (/) or the end of the line; any of these value seaparators may be preceded or followed by any number of consecutive blanks (or space).
+
+If there are tow consescutive commas, then the effect is to read a null value, which results in the value of the corresponding vaarible in the input list being left unchanged.
+
+If the terminating character is a slash then no more data items are read, and processing of the input statement is end. If there are any remaining items in the input list then the result is as though null values had been inout to them; in other words, thire values remian unchanged. \\ \\
+\setlength{\parindent}{13ex}
+Input data: 1,\par 3,\par 5,6.0 failed.
+
+\subsection*{Self-text Exercises 3.1}
+
+\begin{itemize}
+  \item[1.]
+  整数没有小数部分。而实数有小数部分。
+
+  \item[2.]
+  整数可储存为精确值，计算无误差。而实数会进行近似储存，计算结果也是近似值。
+
+  \item[3.]
+  \begin{itemize}
+    \item[i.]
+    实数可取值范围远大于整数。
+
+    \item[ii.]
+    实数有小数部分，可表示比整数更多的数。
+
+  \end{itemize}
+
+  \item[4.]
+  定义变量的类型。 \par
+  Answer: A declaration statement is a statement that identifies a name that will be used to represent a variable, and which also sepcifies the type of information (such as real or integer numbers) that will be stored in that variable.
+
+  \item[5.]
+  \begin{itemize}
+    \item[(a)]
+    INTEGER :: men, women, children \\
+    REAL :: adults\_to\_children
+
+    \item[(b)]
+    REAL :: a\_feet, b\_feet, h\_feet, a\_inch, b\_inch, h\_inch
+
+    \item[(c)]
+    REAL :: a, b, h
+
+    \item[(d)]
+    REAL :: times \\
+    INTEGER :: photons
+  \end{itemize}
+
+  \item[6.]
+  A implicit declaration is one in which a variable does not appear in a type declaration statement, but takes its type from the first letter of its name. \par
+  An IMPLICIT NONE statement at the beginning of the program, immediately after the PROGRAM statement, prevents implicit declaration and results in an error if a variable is used without first being declaraed. Implicit declaration is very dangerous, and can lead to many types of program errors, for example as result of mistyped name not being deected or a variable accidentally being of wrong type.
+
+  \item[7.]
+  An assignment statement cause the result of an expression to be assigned to a variable; that is, to be stored in the memory location identified by the variable name.
+
+  \item[8.]
+  按优先级排序：$**$ (exponentiation), $*$ (multipication) and $/$ (division), $+$ (addition) and $-$ (subtraction).
+
+  \item[9.]
+  REAL :: a, b, ave \\
+  ave = (a+b)/2
+
+  \item[10.]
+  \begin{tabular}{rrr}
+  6.50000000&       10.0000000&      0.649999976\\
+          6&          10&           0\\
+  \end{tabular}
+
+  Answer: \\
+  The exact spacing of the numbers, and the number of decimal places for the real values may vary from computer to computer, but will follow essentially the same layout as shown above. Note that the second number on the second line will be printed as 9 if the result of multiplying 2.5 by 4.0 resulted in a value of, for exmaple, 9.999 999 9 as a result of round-off errors during the calculation.
+
+  \item[11.]
+  \setlength{\parindent}{21ex}  
+  Separated by enter: 1.2 \par 3.456\par 7.89 \par 42.0 \\
+  Separated by space: 1.2 3.456 7.89 42.0 \\
+  Separated by comma: 1.2,3.456,7.89,42.0 \\
+  Separated by salash: 1.2/3.456/7.89/42.0 \\
+
+\end{itemize}
+
+\section{Handling CHARACTER data}
+
+\begin{defn}
+The \textbf{numeric storage unit} is that art of the memory of the computer in which a single REAL or INTEGER number can be stored; 
+The \textbf{character storge units}, typically occupying 8 or 16 bits, ecah of which can hould exactaly one characterr in a code form.
+\end{defn}
+
+\begin{defn}
+A \textbf{character variable} consists of a sequence of one or more consencutive character storge units.
+\end{defn}
+
+\noindent Four ways of writing CHARACTER statement: \par
+\setlength{\parindent}{3ex}
+CHARACTER(LEN=\textit{length}) :: \textit{name1,mane2, ...} \par
+CHARACTER(\textit{length}) :: \textit{name1,mane2, ...} \par
+CHARACTER*\textit{length} :: \textit{name1,mane2, ...} \par
+CHARACTER(LEN=\textit{length}) :: \textit{name1, name2*len\_2, name3*len\_3}
+
+\begin{defn}
+The process of combining two strings to form a third composite string is called \textbf{concatenation}. It is carried out by means of the \textbf{concatenation operator}, consisting two consecutive slashes.
+\end{defn}
+
+\subsection*{Self-text Exercises 3.2}
+
+\begin{itemize}
+  \item[1.]
+  \textit{Fortran Character Set}: 包含26个英文字母，0-9十个数字，下划线和21个其他特殊符号。 \\
+  \textit{default character set}: set of characters normally available on the computer system being used without any special action on the part of the user.
+
+  \item[2.]
+  The declaration of an integer or real variable identifies a name that will store a number. \\
+  The declaration of a character variable is always with a length sepcification, and used to identifies a name that will store a string.
+
+  \item[3.]
+  CHARACTER(LEN=20) :: a,b,c,d \\
+  CHARACTER(LEN=1) :: e \\
+  CHARACTER(LEN=9) :: month
+
+  \item[4.]
+  CHARACTER(LEN=20) :: a,b,c,d,e*1,month*9
+
+  \item[5.]
+  A small step for a man \\      
+  A giant leap for mankind
+
+\end{itemize}
+
+\section{Initial values and constants}
+
+变量可以在 Variable declaration 的时候直接赋值。
+
+\section{Creating your own data types}
+
+\noindent 
+自定义变量类型： \\
+TYPE new\_type \par
+\setlength{\parindent}{3.5ex}
+compontent\_defination \par
+. \par
+. \par
+. \\
+END TYPE new\_type
+
+\begin{note}
+可以直接写在程序中。不需要另写文件定义。
+\end{note}
+
+\begin{example}
+\textbf{structure constructor} \\
+TYPE person \par
+CHARATER(LEN=12) :: first\_name, middle\_initial*1,last\_name \par
+INGTER :: age \par
+CHARACTER :: sex\ \ \ \ ! M or F \par
+CHARACTER(LEN=11) ::  social\_security \\
+END TYPE person \\
+\\
+TYPE(person) :: jack, jill \\
+\\
+jack = person("Jack","R","Hagenbach",47,"M","123-45-6789") \\
+jill = person("Jill","M","Smith",39,"F","987-65-4321")
+\end{example}
+
+\section{Obsolete forms of declaration, initialization and constant definition}
+
+\subsection*{Self-text Exercises 3.3}
+
+\begin{itemize}
+  \item[1.]
+  An entity which given an initial value in its declaration statement can have that value changed later in the program. An entity with the PARAMETER attrobute is a constant, and its value cannot subsequently be changed.
+
+  \item[2.]
+  A derived type is a user-defined data type. It consists of one or more components each of which is either of an intrinsic tyoe or of another derived type. A derived type is, therefore, ultimately derived from entities of intrinsic types.
+
+  \item[3.]
+  可以定义符合问题的变量，方便使用。
+
+  \item[4.]
+  type address \par
+  \setlength{\parindent}{3ex}
+  character(len=*) :: province, city, district, street \par
+  integer :: number \par
+  character :: building \\
+  end type address
+
+  \item[5.]
+  type(address) :: my\_address \\
+  my\_address = address("Beijing"," ","Haidian","Yiheyuan","5","PKU")
+
+  \item[6.]
+  type person \par
+  character(len=20) :: first\_name, last\_name \par
+  type(address) :: address \\
+  end type person \\ \\
+  type(person) :: indivual \\ \\
+  print *,"Please input your name and address in the order" \\
+  print *,"first name, last name, province, city," \\
+  print *,"district, street, number, building" \\
+  read *, indivual
+
+\end{itemize}
+
+
+\section*{Program Exercises}
+
+\end{document}
