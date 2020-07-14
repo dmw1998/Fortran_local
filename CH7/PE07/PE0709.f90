@@ -1,80 +1,89 @@
-subroutine set(size,arr)
+module type_sets
+implicit none
+save
+    type sets
+        integer :: num
+        integer,dimension(:),allocatable :: set
+    end type sets
+end module type_sets
+
+subroutine set_input(size,arr)
+use type_sets
 implicit none
 
     integer,intent(in) :: size
     integer,dimension(size),intent(out) :: arr 
 
-    integer :: i,num
+    integer :: i,num_input
 
     print *,"Please input the number in the set."
 
     do i=1,size
-        read *, num
-        arr(i) = num
+        read *, num_input
+        arr(i) = num_input
     end do 
 
-end subroutine set
+end subroutine set_input
 
 program PE0706
+use type_sets
 implicit none
 
-integer :: size1,size2,size_u,size_i,i,j,k,l,ele
-integer, dimension(:), allocatable :: set1, set2, union, intersec
+type(sets) :: set1,set2,union,intersec
+integer :: i,j,k,l,ele
 
 ! Read two sets
 print *,"Please input the size of set 1."
-read *, size1
-allocate(set1(size1))
-call set(size1,set1)
+read *, set1%num
+allocate(set1%set(set1%num))
+call set_input(set1%num,set1%set)
 
 print *,"Please input the size of set 2."
-read *, size2
-allocate(set2(size2))
-call set(size2,set2)
+read *, set2%num
+allocate(set2%set(set2%num))
+call set_input(set2%num,set2%set)
 
 ! Read the size of the union and intersection
-size_u=size1+size2
-size_i = 0
-do i=1,size1
-    do j=1,size2
-        if (set1(i) == set2(j)) then
-            size_u=size_u-1
-            size_i=size_i+1
+union%num=set1%num+set2%num
+intersec%num = 0
+do i=1,set1%num
+    do j=1,set2%num
+        if (set1%set(i) == set2%set(j)) then
+            union%num=union%num-1
+            intersec%num=intersec%num+1
         end if
     end do 
 end do 
 
 ! Store datas
-allocate(union(size_u))
-allocate(intersec(size_i))
+allocate(union%set(union%num))
+allocate(intersec%set(intersec%num))
 
-k=size2
-union(:k) = set2
+k=set2%num
+union%set(:k) = set2%set
 l=1
 
-do i=1,size1
-    do j = 1,size2
-        if (set1(i) == set2(j)) then
-            intersec(l) = set1(i)
+do i=1,set1%num
+    do j = 1,set2%num
+        if (set1%set(i) == set2%set(j)) then
+            print *, set1%set(i)
+            intersec%set(l) = set1%set(i)
             l = l+1
             exit
         end if
     end do 
 end do 
 
-do i=1,size1
-    ele = set1(i)
-    do j = 1,size_i
-        if (ele == intersec(j)) then
+do i=1,set1%num
+    ele = set1%set(i)
+    do j = 1,intersec%num
+        if (ele == intersec%set(j)) then
             exit
         end if 
-        union(k+1) = ele
+        print *,ele
+        union%set(k+1) = ele
         k = k+1
     end do
 end do 
-
-print *, union
-print *, ""
-print *, intersec
 
 end program PE0706
