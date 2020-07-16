@@ -31,32 +31,23 @@ module add_2_binary
 
     integer :: i 
     logical,dimension(8) :: m
-    logical,dimension(10) :: ci = .false.
-    logical :: co1,co2,cim          ! co stands for carry output, ci stands for carry input 
+    logical :: co1,co2,ci=.false.        ! co stands for carry output, ci stands for carry input 
     
-    ci(8)=.false.
-
     do i=8,1,-1
         co1 = .false.
         co2 = .false.
-        call sub_xor(c(i),cim,c(i+1))
         if (binary1(i) .and. binary2(i)) then
             co1 = .true.
         end if
         call sub_xor(binary1(i),binary2(i),m(i))
 
-        if (ci(i)) then
-            if (m(i) .and. ci(i)) then 
+        if (ci) then
+            if (m(i) .and. ci) then 
                 co2 = .true.
             end if
-            call sub_xor(m(i),ci(i),sum_resl(i)) 
         end if
-
-        if (co1 .and. co2)then
-            ci(i+2) = .true.
-        else
-            call sub_xor(co1,co2,cim)
-        end if
+        call sub_xor(m(i),ci,sum_resl(i)) 
+        ci = co1 .or. co2
     end do
 
     end subroutine add_bin1_bin2
@@ -108,7 +99,7 @@ use add_2_binary
 use integer_logical
 implicit none
 
-integer,dimension(8) :: bin1 = (/1,0,0,1,0,0,1,1/)
+integer,dimension(8) :: bin1 = (/1,0,1,1,0,0,1,1/)
 integer,dimension(8) :: bin2 = (/0,0,1,1,1,0,1,0/),sum_int
 
 logical,dimension(8) :: binary1, binary2, sum_log
