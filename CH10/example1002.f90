@@ -25,6 +25,12 @@ real(kind=q) :: zero,delta
 integer :: number_of_bisections,err
 
 ! Get range and tolerance information
+print *,"Give the bounding interval (two values)"
+read *,left,right
+
+print *,"Give the tolerance"
+read *,tolerance
+
 print *,"Give the maximum number of iterations allowed"
 read *,maximum_iterations
 
