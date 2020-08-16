@@ -1,4 +1,4 @@
-module constants
+module constants01
 implicit none
 
 ! This module contains the physical and other constants
@@ -14,7 +14,7 @@ real(kind=q),parameter :: pi = 3.1415925636_q
 ! Define the size of the largest problem set that can be processed
 integer,parameter :: max_dat=100
 
-end module constants
+end module constants01
 
 program youngs_modulus
 use constants
