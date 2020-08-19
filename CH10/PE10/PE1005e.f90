@@ -1,4 +1,4 @@
-program PE1005a
+program PE1005e
 implicit none
 
 real,external :: f 
@@ -31,7 +31,7 @@ enddo
 
 print '(F10.5, 5X, E15.7)',left, f(left)
 
-end program PE1005a
+end program PE1005e
 
 function f(x)
 
