@@ -23,7 +23,7 @@ do while (abs(df2-df1) > 10.0**(-14.0))
 
 end do 
 
-print '("The Newton quotient fot the function at point x=1.5 is ", F16.14)', df2
+print '("The Newton quotient for the function at point x=1.5 is ", F16.14)', df2
 
 end program PE1009
 
