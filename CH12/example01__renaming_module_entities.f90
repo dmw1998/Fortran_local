@@ -1,4 +1,4 @@
-program rename_exxample
+program rename_example
     use geometry, circle_def => circle, line_def => line, &
                 point_def => point, line => gen_line
     implicit none
@@ -12,4 +12,4 @@ program rename_exxample
     call line(ln2,pt2,ln1)
     call line(ln3,pt2,cir1,'xlarge')
 
-end program rename_exxample
+end program rename_example
