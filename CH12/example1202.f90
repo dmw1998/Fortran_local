@@ -11,6 +11,12 @@ module vectors
         real,dimension(max_length) :: elements
     end type vector
 
+    ! The max_length is a named constant which specifies the maximum length
+    ! of vector permitted. This constant will be declared in the module so 
+    ! that, if it is required to alter the maximum size of vectors, it will
+    ! only be necessary to make on change to the module, and none to any 
+    ! program that uses the module.
+    
 contains
 
     type(vector) function creat_vector(array,n)
