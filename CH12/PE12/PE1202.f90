@@ -17,7 +17,6 @@ program PE1202
 use person_relation
 implicit none
 
-type(family) :: Lucy, Frances, May
 integer :: num1,num2
 character(len=20) :: who, relation,printout
 
