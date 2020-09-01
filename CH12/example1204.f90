@@ -2,7 +2,7 @@ module rational_numbers
     implicit none
     private
     public :: rational, operator(+), operator(-), operator(*), &
-              operator(//)), operator(**), assignment(=),      &
+              operator(/), operator(**), assignment(=),      &
               rational_convert, real, integer
 
 ! This module implements rational numbers as an additional numeric type

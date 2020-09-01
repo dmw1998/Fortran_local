@@ -22,7 +22,7 @@ contains
     type(vector) function creat_vector(array,n)
     ! This function creates a vector from the first n elements of an array
 
-        ! Dummy aarguments
+        ! Dummy arguments
         integer,intent(in) :: n
         real,dimension(n),intent(in) :: array
 
