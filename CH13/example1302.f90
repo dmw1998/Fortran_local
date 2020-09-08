@@ -27,7 +27,7 @@ subroutine allocatable_space
     integer :: error
 
     ! Ask for required size for array
-    print *."Please give maximumsize of file"
+    print *,"Please give maximumsize of file"
     read *, work_size
 
     ! Allocate array
@@ -64,7 +64,7 @@ subroutine calculate
 
     ! Read data until end of file
     do i = 1,work_size
-        read (unit=7, fm=*, iostat=io_stat) work(i)
+        read (unit=7, fmt=*, iostat=io_stat) work(i)
         ! Check for end of file
         if (io_stat < 0) exit
     end do
@@ -76,10 +76,10 @@ subroutine calculate
     call minmax(n,min,max,min_p,max_p)
 
     ! Print details of minimum and maximum numbers
-    print '(1X,"Minimum value is ",F15.4,    &
-            " and occurs at position ",I10/  &
-            1X,"Maximum value is ",F15.4,    &
-            " and occurs at position ",I10)' &
+    print '(1X,"Minimum value is ",F15.4,           &
+                " and occurs at position ",I10/     &
+            1X,"Maximum value is ",F15.4,           &
+                " and occurs at position ",I10)',   &
             min,min_p,max,max_p
     
     ! Calculate number that are less than the mean
@@ -124,7 +124,7 @@ subroutine minmax(n,minimum,maximum,min_pos,max_pos)
 
 end subroutine minmax
 
-subroutine nuk_less_than_mean(n)
+subroutine num_less_than_mean(n)
     use work_space
     implicit none
 
