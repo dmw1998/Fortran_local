@@ -22,6 +22,8 @@ contains
             end do
         end do
 
+        deallocate(arr)
+
         two_norm = sqrt(sum)
 
     end function two_norm
@@ -44,6 +46,8 @@ contains
                 if (abs(arr(i,j)) > max) max = abs(arr(i,j))
             end do
         end do
+
+        deallocate(arr)
 
         infinity_norm = max
     
