@@ -20,4 +20,4 @@ print *, huge(longer)
 
 end program test_int_kind_types
 
-! From kind 17, returns an error -- Kind 17 not supported for type INTEGER
+! From kind 32, returns an error -- Kind 32 not supported for type INTEGER
