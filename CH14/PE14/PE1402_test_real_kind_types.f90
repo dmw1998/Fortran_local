@@ -5,14 +5,18 @@ implicit none
 real(kind = 4) :: shorter
 
 ! eight byte real
-real(kind = 8) :: short 
+real(kind = 8) :: short
+
+! ten byte real
+real(kind = 10) :: long
 
 ! sixteen byte real
-real(kind = 16) :: long
+real(kind = 16) :: longer
 
 print *, huge(shorter)
 print *, huge(short)
 print *, huge(long)
+print *, huge(longer)
 
 end program test_real_kind_types
 
