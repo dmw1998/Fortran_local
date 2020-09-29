@@ -17,9 +17,14 @@ integer,parameter :: master_file = 7
 ! Note that the calculation of the record length is processor
 ! dependent; the following assume one unit per character
 ! and four units per real value
-integer,parameter :: char_store=1, real_store=4
-integer,parameter :: rec_len = char_store*(max_len+8) + &
-                               real_store*4
+
+! integer,parameter :: char_store=1, real_store=4
+! integer,parameter :: rec_len = char_store*(max_len+8) + &
+!                                real_store*4
+
+! A better approach, using the INQUIRE statement, would be to replace
+! upper two lines by
+integer :: rec_len
                     
 contains
 
@@ -65,6 +70,10 @@ character(len=8) :: units
 ! Other variables
 real :: amount, quantity
 integer :: i, ios, record, num_units
+
+! Add a line for refined module
+inquire (iolength=rec_len) name, current_stock, units,      &
+                            re_order,unit_stock,max_stock
 
 ! Open master file
 open (unit = master_file, file = master_file_name,      &
