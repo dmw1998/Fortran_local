@@ -1,11 +1,11 @@
-program ex0910
+program Ex0910
   implicit none
   integer, parameter :: fileid = 10
   character(len=20)  :: filename = "list.txt"
-  integer player
-  real    hit
-  integer error
-  logical alive
+  integer :: player
+  real :: hit
+  integer :: error
+  logical :: alive
   
   inquire(file=filename, exist=alive)
   if ( .not. alive ) then
@@ -15,14 +15,15 @@ program ex0910
 
   open(unit=fileid, file=filename, access="direct",&
        form="formatted", recl=6, status="old")
+
   do while(.true.)
     write(*,"('Which time of hit do you want to know?')")
-	read (*,*) player
-	read(fileid, fmt="(F4.2)", rec=player, IOSTAT=error) hit
-	if ( error/=0 ) exit
-	write(*,"('The hit percent is 'F4.2)") hit
+	  read (*,*) player
+	  read(fileid, fmt="(F4.2)", rec=player, IOSTAT=error) hit
+	  if (error /= 0) exit
+	  write(*,"('The hit percent is 'F4.2)") hit
   end do
+
   close(fileid)
 
-  stop
-end program
+end program Ex0910
