@@ -1,0 +1,6 @@
+ID: 1
+ Chinese: 120 English: 149 Math: 110
+ID: 2
+ Chinese: 116 English: 130 Math: 149
+ID: 3
+ Chinese: 121 English: 110 Math: 149
