@@ -1,4 +1,4 @@
-module func
+module func1008
 
 contains 
 
@@ -19,10 +19,10 @@ contains
         end do
     end function
 
-end module func
+end module func1008
 
 program Ex1008
-use func
+use func1008
 implicit none
 
 integer, target  :: a(8)=(/ 10, 15, 8, 25, 9, 20, 17, 19 /)
