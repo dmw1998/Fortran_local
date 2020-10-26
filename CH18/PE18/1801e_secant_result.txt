@@ -1,0 +1,2 @@
+Root:   -4.0003 Iteration:  28
+Root:    2.9998 Iteration:  18

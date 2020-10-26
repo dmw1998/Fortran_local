@@ -1,0 +1,3 @@
+Root:   -3.0000 Iteration:  10
+Root:    1.5000 Iteration:  12
+Root:    1.6000 Iteration:  10
