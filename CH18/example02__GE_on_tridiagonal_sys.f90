@@ -7,7 +7,7 @@ subroutine tri_gauss(a,d,c,b,error)
 
     ! Dummy arguments
     ! Array a holds the subdiagonal coefficients
-    ! Array d holds the diagonal  coefficients
+    ! Array d holds the diagonal coefficients
     ! Array c holds the above-diagonal coefficients
     ! Array b holds the right-hand-side coefficients
     ! error is a variable that indicates success or failure
@@ -26,8 +26,8 @@ subroutine tri_gauss(a,d,c,b,error)
         error = -1
         return
     end if
-    if (n /= size(d) .or.
-        n /= size(c) .or.
+    if (n /= size(d) .or.       &
+        n /= size(c) .or.       &
         n /= size(d) ) then
         ! The arrays of coefficients do not have the same size
         error = -2
