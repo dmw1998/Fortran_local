@@ -60,7 +60,7 @@ contains
         error = 0
         do i = 1,n-1
             ! Find row with largest  value of |a(j,i)|, j=i, ... , n
-            ksave = maxval(abs(a(i:n,i)))
+            ksave = maxloc(abs(a(i:n,i)))
 
             ! Check whether largest |a(j,i)| is zero
             k = ksave(1) + i - 1
