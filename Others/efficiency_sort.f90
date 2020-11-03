@@ -155,7 +155,7 @@ program test_efficiency
         count = count + (end_time - start_time)
     end do
 
-    print '("Applying 10000 times of quick sort method costs"s,E14.6," seconds.")', count
+    print '("Applying 10000 times of quick sort method costs",E14.6," seconds.")', count
 
     count = 0
     do i = 1,100
