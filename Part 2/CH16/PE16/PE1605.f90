@@ -51,22 +51,21 @@ end subroutine deallocating
 function add(arr1,arr2)
 
     real, dimension(:), intent(in) :: arr1,arr2
-    real, dimension(size(arr1)) :: add
+    real, dimension(size(arr1)), target :: add
 
     type(vector) :: vec, vec1, vec2
 
     call allocating(arr1,vec1)
     call allocating(arr2,vec2)
+    call allocating(add,vec)
 
     if (vec1%length /= vec2%length) then
         print *,"Fail to execute. Please input two vectors with the same size."
         stop
     else
         vec%elements = vec1%elements + vec2%elements
-        vec%length = sqrt(sum((vec%elements)**2))
+        vec%length = vec1%length
     end if
-
-    add = vec
 
     call deallocating(vec)
     call deallocating(vec1)
@@ -83,16 +82,15 @@ function sub(arr1,arr2)
 
     call allocating(arr1,vec1)
     call allocating(arr2,vec2)
+    call allocating(sub,vec)
 
     if (vec1%length /= vec2%length) then
         print *,"Fail to execute. Please input two vectors with the same size."
         stop
     else
         vec%elements = vec1%elements - vec2%elements
-        vec%length = sqrt(sum((vec%elements)**2))
+        vec%length = vec1%length
     end if
-
-    sub = vec
 
     call deallocating(vec)
     call deallocating(vec1)
@@ -103,15 +101,14 @@ end function sub
 function sca_mul(sca,arr)
 
     real, intent(in) :: sca
-    real, dimension(:), intent(in), target :: arr
+    real, dimension(:), intent(in) :: arr
     real, dimension(size(arr)) :: sca_mul
     type(vector) :: vec
 
-    call allocating(arr,vec)
+    sca_mul = arr
+    call allocating(sca_mul,vec)
 
     vec%elements = sca * vec%elements
-    vec%length = sqrt(sum((vec%elements)**2))
-    sca_mul = vec
 
     call deallocating(vec)
 
